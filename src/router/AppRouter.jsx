@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import { Suspense, lazy } from "react";
 
-import Loader from "../shared/components/Loader/Loader";
+import Loader from "../shared/components/loader/Loader";
 
 // LAZY PAGES
 
