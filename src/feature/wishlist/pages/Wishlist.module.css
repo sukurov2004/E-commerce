@@ -1,0 +1,89 @@
+.wishlist {
+  padding: 60px 0;
+}
+
+.container {
+  width: 100%;
+
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 0 20px;
+}
+
+.title {
+  font-size: 32px;
+
+  font-weight: 800;
+
+  color: white;
+
+  margin-bottom: 35px;
+}
+
+/* GRID */
+
+.grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 24px;
+
+  align-items: stretch;
+}
+
+/* CARD FIX */
+
+.grid > * {
+  width: 100%;
+
+  max-width: 320px;
+
+  justify-self: center;
+}
+
+/* LARGE */
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* EMPTY */
+
+.emptyWrapper {
+  min-height: 70vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.emptyTitle {
+  font-size: 32px;
+
+  color: white;
+}
