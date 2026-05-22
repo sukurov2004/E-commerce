@@ -1,5 +1,5 @@
-import Navbar from "./shared/components/Navbar/Navbar";
-import Footer from "./shared/components/Footer/Footer";
+import Navbar from "./shared/components/navbar/Navbar";
+import Footer from "./shared/components/footer/Footer";
 import AppRouter from "./router/AppRouter";
 
 const App = () => {

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import styles from "./ProductDetail.module.css";
-import Loader from "../../../shared/components/Loader/Loader";
+import Loader from "../../../shared/components/loader/Loader";
 const ProductDetail = () => {
   const { id } = useParams();
 
