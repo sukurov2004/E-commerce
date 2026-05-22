@@ -6,7 +6,7 @@ import Loader from "../shared/components/Loader/Loader";
 
 // LAZY PAGES
 
-const Home = lazy(() => import("../feature/home/pages/Home"));
+const Home = lazy(() => import("../feature/Home/Home"));
 
 const Products = lazy(() => import("../feature/products/pages/Products"));
 

@@ -3,5 +3,6 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/E-commerce/"
+  // Use root base so Vercel serves assets from the site root
+  base: "/",
 });
