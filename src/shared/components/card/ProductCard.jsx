@@ -1,247 +1,79 @@
 import styles from "./ProductCard.module.css";
-
-import {
-  FaHeart,
-  FaShoppingBasket,
-  FaTrash,
-  FaMinus,
-  FaPlus,
-  FaCheck,
-} from "react-icons/fa";
-
+import { FaHeart, FaShoppingBasket, FaTrash, FaMinus, FaPlus, FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useBasket } from "../../../hooks/useBasket";
+import { useWishlist } from "../../../hooks/useWishlist";
 
-import { useGlobalContext } from "../../../context/globalProvider";
+const ProductCard = ({ product, variant = "product" }) => {
+  const { addBasket, removeBasket, increaseQuantity, decreaseQuantity, isInBasket } = useBasket();
+  const { addWishlist, removeWishlist, isInWishlist } = useWishlist();
 
-const ProductCard = ({
-  product,
-  variant = "product",
-}) => {
-  const {
-    basket,
-    wishlist,
-
-    addBasket,
-    addWishlist,
-
-    removeBasket,
-    removeWishlist,
-
-    increaseQuantity,
-    decreaseQuantity,
-  } = useGlobalContext();
-
-  // =====================
-  // ACTIVE STATES
-  // =====================
-
-  const isWishlist = wishlist.some(
-    (item) => item.id === product.id
-  );
-
-  const isBasket = basket.some(
-    (item) => item.id === product.id
-  );
-
-  // =====================
-  // ACTIONS
-  // =====================
+  const inBasket   = isInBasket(product.id);
+  const inWishlist = isInWishlist(product.id);
 
   const renderActions = () => {
     switch (variant) {
-      // =====================
-      // BASKET VARIANT
-      // =====================
-
       case "basket":
         return (
           <div className={styles.actions}>
-            <button
-              className={`${styles.iconBtn} ${styles.deleteBtn}`}
-              onClick={() =>
-                removeBasket(product.id)
-              }
-            >
+            <button className={`${styles.iconBtn} ${styles.deleteBtn}`} onClick={() => removeBasket(product.id)}>
               <FaTrash />
             </button>
           </div>
         );
-
-      // =====================
-      // WISHLIST VARIANT
-      // =====================
 
       case "wishlist":
         return (
           <div className={styles.actions}>
-            <button
-              className={`${styles.iconBtn} ${styles.deleteBtn}`}
-              onClick={() =>
-                removeWishlist(product.id)
-              }
-            >
+            <button className={`${styles.iconBtn} ${styles.deleteBtn}`} onClick={() => removeWishlist(product.id)}>
               <FaTrash />
             </button>
-
-            <button
-              className={`${styles.iconBtn} ${
-                isBasket
-                  ? styles.activeBasket
-                  : ""
-              }`}
-              onClick={() =>
-                addBasket(product)
-              }
-            >
-              {isBasket ? (
-                <FaCheck />
-              ) : (
-                <FaShoppingBasket />
-              )}
+            <button className={`${styles.iconBtn} ${inBasket ? styles.activeBasket : ""}`} onClick={() => addBasket(product)}>
+              {inBasket ? <FaCheck /> : <FaShoppingBasket />}
             </button>
           </div>
         );
 
-      // =====================
-      // DEFAULT PRODUCT
-      // =====================
-
       default:
         return (
           <div className={styles.actions}>
-            {/* WISHLIST */}
-
-            <button
-              className={`${styles.iconBtn} ${
-                isWishlist
-                  ? styles.activeHeart
-                  : ""
-              }`}
-              onClick={() =>
-                addWishlist(product)
-              }
-            >
+            <button className={`${styles.iconBtn} ${inWishlist ? styles.activeHeart : ""}`} onClick={() => addWishlist(product)}>
               <FaHeart />
             </button>
-
-            {/* BASKET */}
-
-            <button
-              className={`${styles.iconBtn} ${
-                isBasket
-                  ? styles.activeBasket
-                  : ""
-              }`}
-              onClick={() =>
-                addBasket(product)
-              }
-            >
-              {isBasket ? (
-                <FaCheck />
-              ) : (
-                <FaShoppingBasket />
-              )}
+            <button className={`${styles.iconBtn} ${inBasket ? styles.activeBasket : ""}`} onClick={() => addBasket(product)}>
+              {inBasket ? <FaCheck /> : <FaShoppingBasket />}
             </button>
           </div>
         );
     }
   };
 
-  // =====================
-  // BASKET CONTROLS
-  // =====================
-
   const renderBasketControls = () => {
-    if (variant !== "basket")
-      return null;
-
+    if (variant !== "basket") return null;
     return (
       <div className={styles.quantityBox}>
-        {/* DECREASE */}
-
-        <button
-          className={styles.qtyBtn}
-          onClick={() =>
-            decreaseQuantity(product.id)
-          }
-        >
-          <FaMinus />
-        </button>
-
-        {/* QUANTITY */}
-
-        <span className={styles.qty}>
-          {product.quantity}
-        </span>
-
-        {/* INCREASE */}
-
-        <button
-          className={styles.qtyBtn}
-          onClick={() =>
-            increaseQuantity(product.id)
-          }
-        >
-          <FaPlus />
-        </button>
-
-        {/* TOTAL */}
-
-        <span className={styles.totalPrice}>
-          $
-          {(
-            product.price *
-            product.quantity
-          ).toFixed(2)}
-        </span>
-
+        <button className={styles.qtyBtn} onClick={() => decreaseQuantity(product.id)}><FaMinus /></button>
+        <span className={styles.qty}>{product.quantity}</span>
+        <button className={styles.qtyBtn} onClick={() => increaseQuantity(product.id)}><FaPlus /></button>
+        <span className={styles.totalPrice}>${(product.price * product.quantity).toFixed(2)}</span>
       </div>
     );
   };
 
   return (
     <div className={styles.card}>
-      {/* IMAGE */}
-
       <div className={styles.imageBox}>
-        <img
-          src={product.thumbnail}
-          alt={product.title}
-        />
-
+        <img src={product.thumbnail} alt={product.title} />
         {renderActions()}
       </div>
-
-      {/* CONTENT */}
-
       <div className={styles.content}>
-        <span className={styles.category}>
-          {product.category}
-        </span>
-
+        <span className={styles.category}>{product.category}</span>
         <h3>{product.title}</h3>
-
-        <p>
-          {product.description.slice(
-            0,
-            70
-          )}
-          ...
-        </p>
-
+        <p>{product.description.slice(0, 70)}...</p>
         <div className={styles.bottom}>
-          <span className={styles.price}>
-            ${product.price}
-          </span>
-
-          <Link
-            to={`/products/${product.id}`}
-            className={styles.detailBtn}
-          >
-            Details
-          </Link>
+          <span className={styles.price}>${product.price}</span>
+          <Link to={`/products/${product.id}`} className={styles.detailBtn}>Details</Link>
         </div>
-
         {renderBasketControls()}
       </div>
     </div>
