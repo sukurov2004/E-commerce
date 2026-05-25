@@ -10,6 +10,7 @@ export const GlobalProvider = ({ children }) => {
   const [sort, setSort] = useState("");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  
   const [basket, setBasket] = useState(
     JSON.parse(localStorage.getItem("basket")) || []
   );

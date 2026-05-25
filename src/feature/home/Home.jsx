@@ -1,12 +1,6 @@
-import styles from "./Home.module.css";
-
 import { FaTruck, FaShieldAlt } from "react-icons/fa";
-
-import {
-  MdSupportAgent,
-  MdDiscount,
-} from "react-icons/md";
-
+import { MdSupportAgent, MdDiscount } from "react-icons/md";
+import styles from "./Home.module.css";
 const Home = () => {
   return (
     <main className={styles.home}>
@@ -15,26 +9,17 @@ const Home = () => {
         <div className={styles.heroContent}>
           <span>NEW COLLECTION 2026</span>
 
-          <h1>
-            Discover Premium Tech Products
-          </h1>
+          <h1>Discover Premium Tech Products</h1>
 
           <p>
-            Modern electronics, exclusive
-            discounts and fast delivery all in
-            one place.
+            Modern electronics, exclusive discounts and fast delivery all in one
+            place.
           </p>
 
           <div className={styles.heroButtons}>
-            <button>
-              Shop Now
-            </button>
+            <button>Shop Now</button>
 
-            <button
-              className={styles.secondaryBtn}
-            >
-              Explore
-            </button>
+            <button className={styles.secondaryBtn}>Explore</button>
           </div>
         </div>
 
@@ -53,10 +38,7 @@ const Home = () => {
 
           <h3>Fast Delivery</h3>
 
-          <p>
-            Free shipping on all orders over
-            $100.
-          </p>
+          <p>Free shipping on all orders over $100.</p>
         </div>
 
         <div className={styles.featureCard}>
@@ -64,9 +46,7 @@ const Home = () => {
 
           <h3>Secure Payment</h3>
 
-          <p>
-            100% secure payment protection.
-          </p>
+          <p>100% secure payment protection.</p>
         </div>
 
         <div className={styles.featureCard}>
@@ -74,9 +54,7 @@ const Home = () => {
 
           <h3>24/7 Support</h3>
 
-          <p>
-            Always available customer support.
-          </p>
+          <p>Always available customer support.</p>
         </div>
 
         <div className={styles.featureCard}>
@@ -84,9 +62,7 @@ const Home = () => {
 
           <h3>Best Discounts</h3>
 
-          <p>
-            Daily offers and exclusive sales.
-          </p>
+          <p>Daily offers and exclusive sales.</p>
         </div>
       </section>
 
@@ -95,14 +71,10 @@ const Home = () => {
         <div className={styles.bannerContent}>
           <span>LIMITED OFFER</span>
 
-          <h2>
-            Up To 50% Discount On Premium
-            Products
-          </h2>
+          <h2>Up To 50% Discount On Premium Products</h2>
 
           <p>
-            Upgrade your lifestyle with modern
-            technology and unbeatable prices.
+            Upgrade your lifestyle with modern technology and unbeatable prices.
           </p>
 
           <button>Buy Now</button>

@@ -7,7 +7,9 @@ export const useBasket = () => {
     setBasket((prev) => {
       const found = prev.find((i) => i.id === product.id);
       return found
-        ? prev.map((i) => i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i)
+        ? prev.map((i) =>
+            i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i,
+          )
         : [...prev, { ...product, quantity: 1 }];
     });
   };
@@ -17,14 +19,14 @@ export const useBasket = () => {
 
   const increaseQuantity = (id) =>
     setBasket((prev) =>
-      prev.map((i) => i.id === id ? { ...i, quantity: i.quantity + 1 } : i)
+      prev.map((i) => (i.id === id ? { ...i, quantity: i.quantity + 1 } : i)),
     );
 
   const decreaseQuantity = (id) =>
     setBasket((prev) =>
       prev
-        .map((i) => i.id === id ? { ...i, quantity: i.quantity - 1 } : i)
-        .filter((i) => i.quantity > 0)
+        .map((i) => (i.id === id ? { ...i, quantity: i.quantity - 1 } : i))
+        .filter((i) => i.quantity > 0),
     );
 
   const totalPrice = basket.reduce((sum, i) => sum + i.price * i.quantity, 0);

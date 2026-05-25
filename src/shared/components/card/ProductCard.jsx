@@ -1,14 +1,28 @@
 import styles from "./ProductCard.module.css";
-import { FaHeart, FaShoppingBasket, FaTrash, FaMinus, FaPlus, FaCheck } from "react-icons/fa";
+import {
+  FaHeart,
+  FaShoppingBasket,
+  FaTrash,
+  FaMinus,
+  FaPlus,
+  FaCheck,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
+
 import { useBasket } from "../../../hooks/useBasket";
 import { useWishlist } from "../../../hooks/useWishlist";
 
 const ProductCard = ({ product, variant = "product" }) => {
-  const { addBasket, removeBasket, increaseQuantity, decreaseQuantity, isInBasket } = useBasket();
+  const {
+    addBasket,
+    removeBasket,
+    increaseQuantity,
+    decreaseQuantity,
+    isInBasket,
+  } = useBasket();
   const { addWishlist, removeWishlist, isInWishlist } = useWishlist();
 
-  const inBasket   = isInBasket(product.id);
+  const inBasket = isInBasket(product.id);
   const inWishlist = isInWishlist(product.id);
 
   const renderActions = () => {
@@ -16,7 +30,10 @@ const ProductCard = ({ product, variant = "product" }) => {
       case "basket":
         return (
           <div className={styles.actions}>
-            <button className={`${styles.iconBtn} ${styles.deleteBtn}`} onClick={() => removeBasket(product.id)}>
+            <button
+              className={`${styles.iconBtn} ${styles.deleteBtn}`}
+              onClick={() => removeBasket(product.id)}
+            >
               <FaTrash />
             </button>
           </div>
@@ -25,10 +42,16 @@ const ProductCard = ({ product, variant = "product" }) => {
       case "wishlist":
         return (
           <div className={styles.actions}>
-            <button className={`${styles.iconBtn} ${styles.deleteBtn}`} onClick={() => removeWishlist(product.id)}>
+            <button
+              className={`${styles.iconBtn} ${styles.deleteBtn}`}
+              onClick={() => removeWishlist(product.id)}
+            >
               <FaTrash />
             </button>
-            <button className={`${styles.iconBtn} ${inBasket ? styles.activeBasket : ""}`} onClick={() => addBasket(product)}>
+            <button
+              className={`${styles.iconBtn} ${inBasket ? styles.activeBasket : ""}`}
+              onClick={() => addBasket(product)}
+            >
               {inBasket ? <FaCheck /> : <FaShoppingBasket />}
             </button>
           </div>
@@ -37,10 +60,16 @@ const ProductCard = ({ product, variant = "product" }) => {
       default:
         return (
           <div className={styles.actions}>
-            <button className={`${styles.iconBtn} ${inWishlist ? styles.activeHeart : ""}`} onClick={() => addWishlist(product)}>
+            <button
+              className={`${styles.iconBtn} ${inWishlist ? styles.activeHeart : ""}`}
+              onClick={() => addWishlist(product)}
+            >
               <FaHeart />
             </button>
-            <button className={`${styles.iconBtn} ${inBasket ? styles.activeBasket : ""}`} onClick={() => addBasket(product)}>
+            <button
+              className={`${styles.iconBtn} ${inBasket ? styles.activeBasket : ""}`}
+              onClick={() => addBasket(product)}
+            >
               {inBasket ? <FaCheck /> : <FaShoppingBasket />}
             </button>
           </div>
@@ -52,10 +81,22 @@ const ProductCard = ({ product, variant = "product" }) => {
     if (variant !== "basket") return null;
     return (
       <div className={styles.quantityBox}>
-        <button className={styles.qtyBtn} onClick={() => decreaseQuantity(product.id)}><FaMinus /></button>
+        <button
+          className={styles.qtyBtn}
+          onClick={() => decreaseQuantity(product.id)}
+        >
+          <FaMinus />
+        </button>
         <span className={styles.qty}>{product.quantity}</span>
-        <button className={styles.qtyBtn} onClick={() => increaseQuantity(product.id)}><FaPlus /></button>
-        <span className={styles.totalPrice}>${(product.price * product.quantity).toFixed(2)}</span>
+        <button
+          className={styles.qtyBtn}
+          onClick={() => increaseQuantity(product.id)}
+        >
+          <FaPlus />
+        </button>
+        <span className={styles.totalPrice}>
+          ${(product.price * product.quantity).toFixed(2)}
+        </span>
       </div>
     );
   };
@@ -72,7 +113,9 @@ const ProductCard = ({ product, variant = "product" }) => {
         <p>{product.description.slice(0, 70)}...</p>
         <div className={styles.bottom}>
           <span className={styles.price}>${product.price}</span>
-          <Link to={`/products/${product.id}`} className={styles.detailBtn}>Details</Link>
+          <Link to={`/products/${product.id}`} className={styles.detailBtn}>
+            Details
+          </Link>
         </div>
         {renderBasketControls()}
       </div>
