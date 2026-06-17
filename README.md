@@ -1,16 +1,82 @@
-# React + Vite
+# 🛒 E-Commerce App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive e-commerce application built with **React.js** that allows users to browse products, search and filter items, add products to favorites, manage a shopping cart, and navigate through multiple pages.
 
-Currently, two official plugins are available:
+This project was built to strengthen core React concepts such as state management, routing, data fetching, and component-based architecture.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Display products from a fake API
+* Product search functionality
+* Category filtering
+* Add products to cart
+* Remove products from cart
+* Add products to favorites
+* Remove products from favorites
+* Dedicated Cart page
+* Dedicated Favorites page
+* Dynamic product detail page
+* Responsive design
+* Loading states
+* Error handling
+* Client-side navigation
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Technologies Used
+
+* React.js
+* React Router DOM
+* JavaScript (ES6+)
+* Context API
+* Tailwind CSS
+* Fetch API
+```
+
+The application fetches product data from a fake API and displays product information dynamically.
+
+---
+
+## 📱 Pages
+
+### Home Page
+
+Displays featured products and navigation links.
+
+### Products Page
+
+Displays all products with search and filter functionality.
+
+### Product Detail Page
+
+Shows detailed information about a selected product.
+
+### Cart Page
+
+Displays products added to the shopping cart.
+
+### Favorites Page
+
+Displays products marked as favorites.
+
+### Not Found Page
+
+Handles invalid routes.
+
+---
+
+## 🎯 Learning Objectives
+
+This project was built to practice:
+
+* React Component Architecture
+* React State Management
+* Context API
+* React Router DOM
+* Data Fetching
+* Search and Filtering
+* Dynamic Routing
+* Conditional Rendering
+* Responsive UI Design
